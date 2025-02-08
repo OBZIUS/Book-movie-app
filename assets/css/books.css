@@ -1,0 +1,393 @@
+/* Import the Inter font from Google Fonts for a clean, modern look */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+
+/* ====================================================
+   Set up CSS variables for dark mode.
+   These variables are used throughout the stylesheet and can be overridden
+   when the .light-mode class is applied.
+==================================================== */
+:root {
+  --bg-dark: #000000;      /* Dark background color used by default */
+  --text-light: #ffffff;   /* Light text color used by default */
+  --accent: #ffcc00;       /* Bright yellow accent color for buttons and highlights */
+  --hover-accent: #e6b800;  /* Slightly darker yellow for hover states */
+}
+
+/* ====================================================
+   General Styles
+   Base styling for the entire page.
+==================================================== */
+body {
+  background: var(--bg-dark);             /* Use the dark background variable */
+  color: var(--text-light);                /* Set text color using the light text variable */
+  text-align: center;                      /* Center all text by default */
+  padding: 20px;                           /* Add padding around the page */
+  font-family: 'Inter', sans-serif;        /* Use the imported Inter font */
+  transition: background 0.3s, color 0.3s;   /* Smoothly transition background and text colors */
+}
+
+/* When the .light-mode class is present, override dark mode colors */
+.light-mode {
+  --bg-dark: #ffffff;      /* Change background to white in light mode */
+  --text-light: #000000;   /* Change text color to black in light mode */
+}
+
+/* Container to center and constrain the main content */
+.container {
+  max-width: 900px;        /* Limit content width for readability */
+  margin: 0 auto;          /* Center the container horizontally */
+  padding: 20px;           /* Add internal padding */
+  position: relative;      /* Set positioning context for child elements */
+}
+
+/* ====================================================
+   Enhanced Search Bar Styles
+   Styling for the search bar container, input field, and button.
+==================================================== */
+.search-bar {
+  display: flex;               /* Use flexbox for layout */
+  justify-content: center;     /* Center items horizontally */
+  align-items: center;         /* Align items vertically */
+  margin-bottom: 20px;         /* Space below the search bar */
+}
+
+/* Styling for the search input field */
+.search-bar input {
+  width: 60%;                     /* Input occupies 60% of container width */
+  padding: 14px 18px;             /* Generous padding for comfortable typing */
+  font-size: 16px;                /* Set a readable font size */
+  border-radius: 8px;             /* Rounded corners for a modern look */
+  border: 2px solid rgba(204, 204, 204, 0.7); /* Light gray border */
+  background: rgba(255, 255, 255, 0.1);        /* Semi-transparent background */
+  color: var(--text-light);       /* Use the defined text color */
+  outline: none;                  /* Remove the default browser outline */
+  transition: all 0.3s ease;      /* Smooth transition for focus effects */
+}
+
+/* Input focus state: change border, add glow, and adjust background */
+.search-bar input:focus {
+  border-color: var(--accent);    /* Accent border color on focus */
+  box-shadow: 0 0 12px var(--accent); /* Glow effect around the input */
+  background: rgba(255, 255, 255, 0.15); /* Slightly brighter background on focus */
+}
+
+/* Styling for the search button */
+.search-bar button {
+  background: linear-gradient(145deg, var(--accent), var(--hover-accent)); /* Gradient background */
+  color: black;                     /* Button text color */
+  border: none;                     /* Remove default border */
+  padding: 14px 22px;               /* Padding for clickable area */
+  cursor: pointer;                  /* Show pointer on hover */
+  border-radius: 8px;               /* Rounded corners */
+  margin-left: 10px;                /* Space between input and button */
+  font-size: 16px;                  /* Set font size */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover transitions */
+}
+
+/* Hover state for the search button: lift and add shadow */
+.search-bar button:hover {
+  transform: translateY(-3px);      /* Slight upward movement */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
+}
+
+/* ====================================================
+   Book Container & Card Styles
+   Layout and styling for the grid of book cards.
+==================================================== */
+/* Container for book cards using a responsive grid layout */
+#book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-adjust columns */
+  gap: 20px;                /* Space between cards */
+  margin-top: 30px;         /* Space above the grid */
+  padding: 20px;            /* Padding around the grid */
+}
+
+/* Styling for individual book cards */
+.book-card {
+  background: var(--bg-dark);    /* Card background color */
+  padding: 20px;                 /* Internal spacing */
+  border-radius: 12px;           /* Rounded corners */
+  text-align: center;            /* Center text within the card */
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border: 1px solid #444;        /* Dark gray border */
+  position: relative;            /* For child positioning */
+  overflow: hidden;              /* Hide overflow content */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
+  animation: fadeIn 0.8s ease-in-out forwards; /* Fade-in effect on load */
+}
+
+/* Hover state for book cards: increase shadow for emphasis */
+.book-card:hover {
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Title styling within a book card */
+.book-card h3 {
+  font-size: 1.3rem;           /* Increase title size */
+  font-weight: 600;            /* Make the title bold */
+  transition: color 0.3s ease-in-out; /* Smooth color change */
+  margin-bottom: 10px;         /* Space below the title */
+}
+
+/* Paragraph styling for book details (e.g., authors) */
+.book-card p {
+  font-size: 1rem;             /* Base font size */
+  color: #ccc;                 /* Light gray color for text */
+  font-style: italic;          /* Italicize details */
+  transition: color 0.3s ease-in-out; /* Smooth transition */
+  margin-bottom: 10px;         /* Space below the text */
+}
+
+/* Styling for the book cover image */
+.book-card img {
+  width: 100%;                 /* Full width image */
+  height: auto;                /* Maintain aspect ratio */
+  max-height: 250px;           /* Limit image height */
+  object-fit: cover;           /* Cover the space without distortion */
+  border-radius: 8px;          /* Rounded image corners */
+  margin-top: 10px;            /* Space above the image */
+}
+
+/* Styling for the rating text within a book card */
+.book-card .rating {
+  font-size: 1rem;             /* Standard font size for ratings */
+  color: #ff9800;              /* Orange color for rating emphasis */
+  margin-top: 10px;            /* Space above the rating */
+}
+
+/* ====================================================
+   Preview & Wishlist Button Styles
+   Styling for the buttons that allow users to preview books or add them to a wishlist.
+==================================================== */
+/* Preview button styling */
+.preview-button {
+  margin-top: 15px;            /* Space above the button */
+  padding: 8px 12px;           /* Internal padding */
+  font-size: 0.9rem;           /* Smaller font size */
+  border: 2px solid var(--accent); /* Accent-colored border */
+  border-radius: 20px;         /* Fully rounded button */
+  background: transparent;     /* Transparent background */
+  color: var(--accent);        /* Text uses the accent color */
+  cursor: pointer;             /* Change cursor on hover */
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth hover transitions */
+}
+
+/* Hover state for the preview button */
+.preview-button:hover {
+  background: var(--accent);   /* Fill background with accent color */
+  color: black;                /* Change text color to black */
+}
+
+/* Wishlist button styling */
+.wishlist-button {
+  margin-top: 15px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Hover state for the wishlist button */
+.wishlist-button:hover {
+  background: var(--accent);
+  color: black;
+}
+
+/* ====================================================
+   Wishlist Container & Card Styles
+   Layout and styling for the wishlist section.
+==================================================== */
+/* Container for the wishlist section */
+#wishlist-container {
+  margin-top: 40px;             /* Space above the wishlist */
+  padding: 20px;                /* Padding inside the wishlist area */
+  background: var(--bg-dark);    /* Use the background color variable */
+  border: 1px solid #444;       /* Dark border */
+  border-radius: 12px;          /* Rounded container corners */
+}
+
+/* Header styling for the wishlist section */
+#wishlist-container h2 {
+  margin-bottom: 20px;          /* Space below the header */
+  font-size: 2rem;              /* Larger font for the header */
+  color: var(--accent);         /* Use the accent color for the header */
+}
+
+/* Grid layout for wishlist items */
+#wishlist-books {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 20px;                   /* Space between wishlist cards */
+}
+
+/* Styling for individual wishlist cards */
+.wishlist-card {
+  background: var(--bg-dark);   /* Card background color */
+  padding: 15px;                /* Internal spacing */
+  border-radius: 12px;          /* Rounded corners */
+  text-align: center;           /* Center text */
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+  border: 1px solid #444;       /* Dark border */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Wishlist card title styling */
+.wishlist-card h3 {
+  font-size: 1.1rem;           /* Slightly larger text */
+  margin-bottom: 8px;          /* Space below the title */
+}
+
+/* Wishlist card paragraph styling */
+.wishlist-card p {
+  font-size: 0.9rem;           /* Smaller font size */
+  margin-bottom: 8px;          /* Space below the text */
+}
+
+/* Wishlist card image styling */
+.wishlist-card img {
+  width: 100%;                 /* Full width image */
+  height: auto;                /* Maintain aspect ratio */
+  max-height: 150px;           /* Limit height */
+  object-fit: cover;           /* Cover the container without distortion */
+  border-radius: 8px;          /* Rounded corners for the image */
+}
+
+/* ====================================================
+   Remove & Clear Wishlist Button Styles
+   Styling for buttons that remove a single item or clear the entire wishlist.
+==================================================== */
+/* Button for removing an individual wishlist item */
+.remove-btn {
+  background: linear-gradient(145deg, #ff6666, #ff3333); /* Red gradient background */
+  color: white;                /* White text */
+  padding: 8px 12px;           /* Internal padding */
+  border: none;                /* No border */
+  border-radius: 8px;          /* Rounded corners */
+  margin-top: 10px;            /* Space above the button */
+  cursor: pointer;             /* Pointer cursor on hover */
+  font-size: 14px;             /* Font size for the button */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+}
+
+/* Hover state for the remove button */
+.remove-btn:hover {
+  transform: translateY(-2px); /* Lift button slightly on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Button for clearing the entire wishlist */
+.clear-wishlist-btn {
+  background: linear-gradient(145deg, #ff6666, #ff3333);
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 10px;         /* Space below the button */
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover state for the clear wishlist button */
+.clear-wishlist-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ====================================================
+   Toggle Mode Button Styles
+   Styling for the button that toggles between dark and light modes.
+==================================================== */
+#toggle-mode {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, var(--accent), var(--hover-accent)); /* Gradient background */
+  color: black;
+  font-weight: bold;
+  z-index: 1100;             /* Ensure it stays on top */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover state for the toggle mode button */
+#toggle-mode:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ====================================================
+   3D Tilt Animation & Fade-In Effect
+   Animation for fading in book cards.
+==================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px); /* Start slightly lower */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);    /* End at natural position */
+  }
+}
+
+/* ====================================================
+   Modal Styles (if used)
+   Basic styling for modal dialogs.
+==================================================== */
+.modal {
+  display: none;               /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);  /* Semi-transparent dark overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;               /* On top of other content */
+}
+
+.modal-content {
+  background: #222;            /* Dark background for modal */
+  color: var(--text-light);     /* Light text color */
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 325px;
+  text-align: center;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;            /* Scroll if content is too tall */
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  color: red;
+}
+
+.trailer-container {
+  margin-top: 15px;
+  width: 100%;
+  max-width: 560px;
+}

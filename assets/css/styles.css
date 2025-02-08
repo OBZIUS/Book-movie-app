@@ -1,0 +1,93 @@
+/* Load the Poppins font from Google so our text looks modern and clean */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* Set up some handy variables to control effects and timing */
+:root {
+  --hover-scale: 1.07;         /* How much to zoom in when you hover over something */
+  --transition-speed: 0.4s;      /* How fast transitions (like hover effects) happen */
+  --text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3); /* A soft shadow for text, giving it a little depth */
+}
+
+/* Reset some defaults and use our chosen font everywhere */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Make the body a flex container so we can split it easily,
+   and make it take the full height of the viewport */
+body {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* Hide any extra content that might spill out */
+}
+
+/* This container splits the screen into two equal parts */
+.split-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Left side: the Books section
+   It has a white background and black text for a clean look */
+.left {
+  flex: 1;                              /* Take up half the space */
+  background: white;
+  color: black;
+  display: flex;                        /* Use flexbox to center content */
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;                      /* Big, bold text */
+  font-weight: 600;
+  text-transform: uppercase;            /* Make the text all capital letters */
+  cursor: pointer;                      /* Show a pointer when you hover */
+  transition: transform var(--transition-speed); /* Smooth zoom effect */
+}
+
+/* Right side: the Movies section
+   It uses a black background with white text for contrast */
+.right {
+  flex: 1;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform var(--transition-speed);
+}
+
+/* When you hover over either side, they zoom in a little bit */
+.left:hover, .right:hover {
+  transform: scale(var(--hover-scale));
+}
+
+/* A smooth fade-in animation when the page first loads */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Apply the fade-in animation to the whole split container */
+.split-container {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Make it look good on smaller screens by stacking the sections vertically */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+  
+  .left, .right {
+    flex: none;
+    height: 50vh;        /* Each section takes half the screen height */
+    font-size: 2rem;     /* Slightly smaller text on small screens */
+  }
+}

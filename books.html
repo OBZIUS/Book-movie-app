@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Library</title>
+  <link rel="stylesheet" href="assets/css/books.css" />
+</head>
+<body>
+  <header>
+    <h1>📚 Book Library</h1>
+    <!-- Toggle dark/light mode button -->
+    <button id="toggle-mode" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+  </header>
+
+  <!-- Enhanced Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="search-book" placeholder="Search for books..." />
+    <button id="search-btn" onclick="fetchBooks()">Search</button>
+  </div>
+
+  <!-- Main books display container -->
+  <div id="book-container"></div>
+
+  <!-- Wishlist display container -->
+  <div id="wishlist-container">
+    <h2>Wishlist</h2>
+    <button id="clear-wishlist" class="clear-wishlist-btn">Clear Wishlist</button>
+    <div id="wishlist-books"></div>
+  </div>
+
+  <script src="assets/js/books.js"></script>
+</body>
+</html>

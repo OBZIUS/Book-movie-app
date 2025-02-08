@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Search App 🎬</title>
+  <link rel="stylesheet" href="/Movie-Book-App/assets/css/movies.css" />
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Mode</button>
+  <!-- Watchlist Button (Scrolls to Favorites section) -->
+  <button class="watchlist-btn" onclick="scrollToWatchlist()">Watchlist</button>
+
+  <div class="container">
+    <h1>🎬 Movie Explorer</h1>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" id="movie-search" placeholder="Search for movies..." />
+      <button onclick="fetchMovies()">🔍 Search</button>
+    </div>
+
+    <!-- Trending Movies Section -->
+    <h2>📈 Trending Movies</h2>
+    <div id="trending-container" class="movie-container"></div>
+
+    <!-- Search Results Section -->
+    <h2>🔎 Search Results</h2>
+    <div id="movie-container" class="movie-container"></div>
+
+    <!-- Favorites / Watchlist Section -->
+    <h2>❤️ Your Watchlist</h2>
+    <div id="favorites-container" class="movie-container"></div>
+  </div>
+
+  <!-- Movie Details Modal -->
+  <div id="movie-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">✖</span>
+      <div id="modal-details"></div>
+    </div>
+  </div>
+
+  <script src="/Movie-Book-App/assets/js/movies.js"></script>
+</body>
+</html>
